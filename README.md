@@ -21,7 +21,13 @@
 ├── Simulation_Preliminaries.ipynb      # Preliminaries for our methods
 ├── Simulated_Data_Experiments.ipynb    # All Experiments in our paper for simulated data
 ├── Simulated_Experiment_Data.npz           # Exact data used in the paper (≈400 kB)
-├── Common_Tools                        #Various Convenient tools used for plotting and mathematical operations
+├── Common_Tools.py                        # Various Convenient tools used for plotting and mathematical operations
+├── Filters.py                          # Contain Kalman filter code with marginal likelihood estimate 
+├── Levy_Generators.py                  # Generators for Lévy using the series representation
+├── Levy_State_Space.py                 # Generator for Lévy SSM response using the generalized shot-noise representation
+├── ground_truths.py                    # Code for generating the ground truths for verification of our results
+├── posteriors.py                       # Various posterior samplers
+├── mcmc_sampler.py                     # Packed MCMC Sampler for the inference problem, the main algorithm
 ├── requirements.txt
 └── LICENSE
 
@@ -41,23 +47,12 @@ reproduces the results reported in the paper.
 
 ⸻
 
-Notebooks at a glance
-
-Notebook	Purpose	Typical runtime*
-Simulation_Preliminaries.ipynb	single tempered-stable path, seed checks	< 1 min
-01_single_path.ipynb	reproduces Fig. 2 sample path (paper)	2 – 3 min
-02_parameter_inference.ipynb	full Langevin LM inference, reproduces Table 1	~10 min
-
-* M1 MacBook; see notebook headers for per-cell timings.
-
+All experiments run on an M4 Macbook Pro
 ⸻
 
-Development setup (optional)
+Development setup
 
-pip install -r requirements-dev.txt   # pytest, black, nbstripout …
-pytest -q                             # run tests
-pre-commit install                    # strip notebook output on commit
-
+pip install -r requirements-dev.txt  
 
 ⸻
 
@@ -66,8 +61,8 @@ Citation
 If you use this toolkit, please cite the following article:
 
 @article{Lin_Godsill_2025,
-  title   = {Bayesian Non-Parametric Inference for L{\'e}vy Measures in State-Space Models},
-  author  = {Lin, Bill Z. and Godsill, Simon},
+  title   = {{B}ayesian {N}on-{P}arametric {I}nference for {L}\'evy {M}easures in {S}tate-{S}pace {M}odels},
+  author  = {Lin, B. Z. and Godsill, S.},
   year    = {2025},
   month   = {May},
   eprint  = {2505.22587},
@@ -77,8 +72,6 @@ If you use this toolkit, please cite the following article:
   note    = {arXiv:2505.22587 [stat]},
   publisher = {arXiv}
 }
-
-A CITATION.cff file will be provided for automatic GitHub/Zotero export.
 
 ⸻
 
