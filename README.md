@@ -15,19 +15,22 @@
 > **If you wish to verify the results in the paper, clone this repo and run the notebooks as instructed below.**
 
 
-## Repository layout
+## 📂 Repository layout
 
+```text
 .
-├── Simulation_Preliminaries.ipynb      # Preliminaries for our methods
-├── Simulated_Data_Experiments.ipynb    # All Experiments in our paper for simulated data
-├── Simulated_Experiment_Data.npz           # Exact data used in the paper (≈400 kB)
-├── Common_Tools.py                        # Various Convenient tools used for plotting and mathematical operations
-├── Filters.py                          # Contain Kalman filter code with marginal likelihood estimate 
-├── Levy_Generators.py                  # Generators for Lévy using the series representation
-├── Levy_State_Space.py                 # Generator for Lévy SSM response using the generalized shot-noise representation
-├── ground_truths.py                    # Code for generating the ground truths for verification of our results
-├── posteriors.py                       # Various posterior samplers
-├── mcmc_sampler.py                     # Packed MCMC Sampler for the inference problem, the main algorithm
+├── Simulation_Preliminaries.ipynb        # method preliminaries
+├── Simulated_Data_Experiments.ipynb      # all simulated-data experiments
+├── Simulated_Experiment_Data.npz         # exact data used in the paper (≈400 kB)
+│
+├── Common_Tools.py                       # plotting & math helpers
+├── Filters.py                            # Kalman filter + marginal likelihood
+├── Levy_Generators.py                    # Lévy series generators
+├── Levy_State_Space.py                   # Lévy SSM via shot-noise reps
+├── ground_truths.py                      # ground-truth simulators
+├── posteriors.py                         # posterior diagnostics
+├── mcmc_sampler.py                       # main MCMC algorithm
+│
 ├── requirements.txt
 └── LICENSE
 
