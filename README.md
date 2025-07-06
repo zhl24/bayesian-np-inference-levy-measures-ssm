@@ -20,9 +20,8 @@
 .
 ├── Simulation_Preliminaries.ipynb      # Preliminaries for our methods
 ├── Simulated_Data_Experiments.ipynb    # All Experiments in our paper for simulated data
-├──
-├── src/levy_bnp/                           # core generators & MCMC kernels
 ├── Simulated_Experiment_Data.npz           # Exact data used in the paper (≈400 kB)
+├── Common_Tools                        #Various Convenient tools used for plotting and mathematical operations
 ├── requirements.txt
 └── LICENSE
 
