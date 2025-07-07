@@ -1,7 +1,7 @@
 # Toolkit for Bayesian Non-Parametric Inference for Lévy Measures in State-Space Models
 
 > **This repository contains the code and data required to reproduce all 
-> experiments in our paper on simulated data (section 6.3 not included)**:  
+> experiments in our paper on simulated data (experiments in section 6.3 on FX data not included)**:  
 >
 > > **Lin B.Z. & Godsill S. (2025)**  
 > > *Bayesian Non-Parametric Inference for Lévy Measures in State-Space Models.*  
