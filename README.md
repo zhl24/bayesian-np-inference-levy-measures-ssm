@@ -82,6 +82,3 @@ License
 
 Released under the MIT License – see the LICENSE file for full
 text.
-
-Copy-paste → **Commit new file** → done.  
-Your README now points users straight to your paper for citation.
