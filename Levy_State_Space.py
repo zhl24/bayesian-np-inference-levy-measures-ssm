@@ -59,3 +59,59 @@ def langevin_observations(hidden_process_path,C=np.identity(2),H=np.identity(2),
 
 
 
+
+
+
+#Check Functions:
+def _langevin_test(with_observation_noise=False):
+    if with_observation_noise:
+        observation_noise_level = 0.1
+        T = 10.0
+        time_axis = np.linspace(0,T,int(T)*10)
+        beta=1
+        alpha = 1/beta
+        C=0.1
+        muw = 0.0
+        sigmaw = 1.0
+        theta = -1.0
+        sub_jump_sizes,jump_times = gamma_process_jumps((beta,C),T,sim_rate=200)
+        nvm_jump_sizes = nvm_process_jumps(sub_jump_sizes,muw,sigmaw)
+        langevin_path = langevin_hidden_response(nvm_jump_sizes,jump_times,theta,time_axis) #(2,N) process path
+        noisy_langevin_path = langevin_observations(langevin_path,observation_noise_level*np.identity(2))
+        x_path = noisy_langevin_path[0,:]
+        xdot_path = noisy_langevin_path[1,:]
+        plt.plot(time_axis,xdot_path)
+        plt.show()
+    else:
+        #Generate the jump process first
+        T = 10.0
+        time_axis = np.linspace(0,T,int(T)*10)
+        beta=1
+        alpha = 1/beta
+        theta = -1.0
+        C=0.1
+        muw = 0.0
+        sigmaw = 1.0
+        sub_jump_sizes,jump_times = gamma_process_jumps((beta,C),T,sim_rate=200)
+        nvm_jump_sizes = nvm_process_jumps(sub_jump_sizes,muw,sigmaw)
+
+        langevin_path = langevin_hidden_response(nvm_jump_sizes,jump_times,theta,time_axis) #(2,N) process path
+        x_path = langevin_path[0,:]
+        xdot_path = langevin_path[1,:]
+        plt.plot(time_axis,xdot_path)
+        plt.show()
+    return
+
+
+
+
+
+
+
+
+#The following is the actions to be run when the file is called directly
+def main():
+    _langevin_test(False)#True to add noise, False to remove noise
+
+if __name__ == "__main__":
+    main()
