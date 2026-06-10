@@ -8,7 +8,7 @@ Reference implementation accompanying:
 
 > **Lin, B. Z. & Godsill, S. (2025).**
 > *Bayesian Non-Parametric Inference for Lévy Measures in State-Space Models.*
-> Bayesian Analysis (to appear). arXiv:2505.22587 — <https://arxiv.org/abs/2505.22587>
+> arXiv preprint arXiv:2505.22587 — <https://arxiv.org/abs/2505.22587>
 
 ## Overview
 
@@ -121,16 +121,15 @@ Suggested order, following the paper:
 If you use this toolkit, please cite:
 
 ```bibtex
-@article{Lin_Godsill_2025,
-  title      = {{B}ayesian {N}on-{P}arametric {I}nference for {L}\'evy {M}easures in {S}tate-{S}pace {M}odels},
-  author     = {Lin, Bill Z. and Godsill, Simon},
-  year       = {2025},
-  journal    = {Bayesian Analysis},
-  note       = {To appear; arXiv:2505.22587 [stat.ME]},
-  eprint     = {2505.22587},
-  eprinttype = {arXiv},
-  url        = {https://arxiv.org/abs/2505.22587},
-  doi        = {10.48550/arXiv.2505.22587}
+@misc{Lin_Godsill_2025,
+  title         = {{B}ayesian {N}on-{P}arametric {I}nference for {L}\'evy {M}easures in {S}tate-{S}pace {M}odels},
+  author        = {Lin, Bill Z. and Godsill, Simon},
+  year          = {2025},
+  eprint        = {2505.22587},
+  archivePrefix = {arXiv},
+  primaryClass  = {stat.ME},
+  url           = {https://arxiv.org/abs/2505.22587},
+  doi           = {10.48550/arXiv.2505.22587}
 }
 ```
 
