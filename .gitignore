@@ -2,3 +2,6 @@
 *.png
 buffer.npz
 .venv
+
+noisy_nvm_direct_observations_sigmaw2_conditional.npz
+nvm_direct_observations_sigmaw2_conditional.npz
