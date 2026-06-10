@@ -1,3 +1,14 @@
+"""Conditional posterior samplers and block-update kernels for the MCMC scheme.
+
+Implements the Gibbs / Metropolis-within-Gibbs conditional updates for the
+Dirichlet-process Lévy-measure model — Poisson rate, DP concentration, Gamma
+base-measure parameters, jump-size distribution — together with the overlapping
+block updates of the latent jump configuration and prior-measure draws.
+
+Part of the code accompanying:
+    Lin, B. Z. & Godsill, S. (2025). Bayesian Non-Parametric Inference for
+    Lévy Measures in State-Space Models. arXiv:2505.22587.
+"""
 import numpy as np
 from scipy.linalg import expm #This is the automatic matrix expnent solver
 import math
@@ -598,7 +609,7 @@ def _test_rate_posterior():
     # Step 3: Plot posterior samples and compare with true value
     plt.figure(figsize=(10, 6))
     plt.hist(posterior_samples, bins=30, density=True, alpha=0.6, color='skyblue', label="Posterior samples")
-    plt.axvline(true_lambda, color='red', linestyle='--', label=f"True rate ($\lambda$ = {true_lambda})")
+    plt.axvline(true_lambda, color='red', linestyle='--', label=rf"True rate ($\lambda$ = {true_lambda})")
     plt.xlabel("Rate parameter (lambda)")
     plt.ylabel("Density")
     plt.title("Posterior Distribution of Rate Parameter")

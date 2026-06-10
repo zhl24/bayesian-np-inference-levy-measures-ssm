@@ -1,3 +1,14 @@
+"""Shared numerical and plotting utilities for the Lévy state-space toolkit.
+
+Provides path integration of jump (shot-noise) series, Langevin matrix
+exponentials, Kalman marginal-likelihood evaluation, Lévy-measure projection and
+aggregation, ground-truth / inferred NVM measure construction, tail-function
+estimators, and MCMC diagnostics (autocorrelation, IACT, MSE, entropy).
+
+Part of the code accompanying:
+    Lin, B. Z. & Godsill, S. (2025). Bayesian Non-Parametric Inference for
+    Lévy Measures in State-Space Models. arXiv:2505.22587.
+"""
 import numpy as np
 from scipy.linalg import expm #This is the automatic matrix expnent solver
 from scipy.special import gammaln #log gamma function
@@ -149,15 +160,15 @@ def compute_overlapping_block_indices(block_size, overlapping_size, sequence_len
     if step <= 0:
         raise ValueError("Require block_size > overlapping_size (strictly).")
 
-    # 如果块比序列还长，就只给一块覆盖全部（可按需求改成 raise）
+    # If the block is longer than the sequence, return a single block covering everything
     if block_size >= sequence_length:
         return np.array([[0], [sequence_length - 1]], dtype=int)
 
-    # 常规：从 0 开始每次跨 step
+    # Standard case: start at 0 and advance by step each time
     starts = np.arange(0, sequence_length - block_size + 1, step, dtype=int)
     ends   = starts + block_size - 1
 
-    # 若最后一块没对齐到末尾，就补一块以末尾对齐
+    # If the last block does not reach the end, append one aligned to the end
     last_start = sequence_length - block_size
     if starts[-1] != last_start:
         starts = np.append(starts, last_start)
@@ -599,7 +610,7 @@ def regularized_projection_estimate(data, counts, resolution, regularized_power=
     results = np.zeros(resolution * len(bin_centers))
     x_axis = np.linspace(x_min, x_max, len(results))
     
-    # 填充 results 数组
+    # Fill the results array
     for i in range(len(bin_centers)):
         for j in range(resolution):
             if i * resolution + j < len(results):
@@ -722,7 +733,7 @@ def aggregate_measure(weights, locations,decimal_precision=10):
         unique_locs: (K,) K<=N
     """
     # Round locations to avoid floating-point matching issues
-    rounded = np.round(locations, decimals=decimal_precision)  #精确到小数点后十位
+    rounded = np.round(locations, decimals=decimal_precision)  # round to the given number of decimals
     unique_locs, inverse_idx = np.unique(rounded, return_inverse=True)
     aggregated_weights = np.zeros_like(unique_locs, dtype=weights.dtype)
     np.add.at(aggregated_weights, inverse_idx, weights)
@@ -1501,24 +1512,24 @@ def compute_functional_acf_and_act_via_fft(time_series_samples, time_axis, max_l
         return np.r_[1.0, np.zeros(max_lag)], 1.0
 
     # ---- FFT-based unbiased autocov across samples for each column ----
-    # Zero-pad到 >= 2N 的长度实现线性相关；取前 N 个滞后
+    # Zero-pad to length >= 2N to obtain linear (not circular) correlation; keep the first N lags
     L = 1 << (2*N-1).bit_length()   # next power of two >= 2N
-    # FFT along sample axis (axis=0), for all columns并行
+    # FFT along sample axis (axis=0), for all columns in parallel
     F = np.fft.rfft(Xc, n=L, axis=0)
     # Power spectrum -> IFFT gives (circular) autocorrelation
     acf_circ = np.fft.irfft(F * np.conj(F), n=L, axis=0).real   # shape (L, T-1)
-    # 线性相关的前 N 个滞后
+    # First N lags of the linear correlation
     acf_lin = acf_circ[:N, :]                                   # (N, T-1)
 
-    # 无偏（unbiased）归一：每个滞后除以有效样本数 (N - lag)
+    # Unbiased normalization: divide each lag by the effective sample count (N - lag)
     counts = (N - np.arange(N)).reshape(-1, 1)                   # (N, 1)
     acf_unbiased = acf_lin / counts                              # (N, T-1)
 
-    # 汇总为“functional”自相关：对列按 w 加权求和
+    # Aggregate into a "functional" autocorrelation: weighted sum over columns by w
     # acf_functional[lag] = sum_t w_t * acf_unbiased[lag, t]
     acf_weighted = acf_unbiased @ w                              # (N,)
 
-    # 取所需滞后，并按 lag-0 归一
+    # Take the required lags and normalize by lag-0
     acf_values = (acf_weighted[:max_lag+1] / norm_factor).copy()
 
     # Integrated autocorrelation time

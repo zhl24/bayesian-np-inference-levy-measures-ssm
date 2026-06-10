@@ -1,3 +1,14 @@
+"""Lévy process jump (shot-noise) generators.
+
+Series-representation simulators for the driving subordinators and normal
+variance-mean (NVM) processes used throughout the toolkit: Gamma and tempered
+stable subordinators, NVM jumps, and compound-Poisson generators driven by
+Dirichlet-process / Gamma-mixture Lévy measures.
+
+Part of the code accompanying:
+    Lin, B. Z. & Godsill, S. (2025). Bayesian Non-Parametric Inference for
+    Lévy Measures in State-Space Models. arXiv:2505.22587.
+"""
 import numpy as np
 from scipy.linalg import expm #This is the automatic matrix expnent solver
 import math
@@ -7,7 +18,7 @@ from numba import jit
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 from scipy.stats import gamma
-from numpy.random import default_rng as _np_default_rng  # 取个别名，绕过你自己的 monkey-patch
+from numpy.random import default_rng as _np_default_rng  # aliased to bypass any local RNG monkey-patching
 
 def gamma_process_jumps(gamma_parameters,T,sim_rate=100):
     #Gamman parameters (beta,C)
@@ -157,7 +168,7 @@ def compound_poisson_gamma_mixture(rate,
     jump_sizes : ndarray, shape (1, N_jumps)
     jump_times : ndarray, shape (1, N_jumps)
     """
-    # 用原生 default_rng，不会递归
+    # use the native default_rng to avoid recursion
     rng = _np_default_rng(seed)
 
     # 1) Number of jumps

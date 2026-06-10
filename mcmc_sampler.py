@@ -1,3 +1,14 @@
+"""Augmented MCMC samplers for Lévy-measure inference in the Langevin model.
+
+Top-level inference routines that combine the conditional posteriors and
+overlapping block updates into full MCMC algorithms for the linear Lévy
+state-space model, including variants that infer the system parameter theta, the
+Dirichlet-process concentration, and the Gamma base-measure parameters.
+
+Part of the code accompanying:
+    Lin, B. Z. & Godsill, S. (2025). Bayesian Non-Parametric Inference for
+    Lévy Measures in State-Space Models. arXiv:2505.22587.
+"""
 import numpy as np
 from scipy.linalg import expm #This is the automatic matrix expnent solver
 import math

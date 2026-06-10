@@ -1,3 +1,13 @@
+"""MCMC samplers conditioning on the NVM variance parameter sigma_w^2.
+
+Variants of the Langevin / NVM inference routines that treat the NVM variance
+parameter sigma_w^2 as a conditioning variable, including stationary-domain and
+alternative-initialisation versions used to produce the paper's experiments.
+
+Part of the code accompanying:
+    Lin, B. Z. & Godsill, S. (2025). Bayesian Non-Parametric Inference for
+    Lévy Measures in State-Space Models. arXiv:2505.22587.
+"""
 import numpy as np
 from scipy.linalg import expm #This is the automatic matrix expnent solver
 import math

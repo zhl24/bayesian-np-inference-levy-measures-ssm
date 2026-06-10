@@ -1,3 +1,13 @@
+"""Closed-form and Monte-Carlo ground-truth Lévy measures and tail functions.
+
+Reference quantities (NVM densities and upper-tail functions for Gamma and
+tempered stable subordinators) used to validate the inferred posterior Lévy
+measures in the experiments.
+
+Part of the code accompanying:
+    Lin, B. Z. & Godsill, S. (2025). Bayesian Non-Parametric Inference for
+    Lévy Measures in State-Space Models. arXiv:2505.22587.
+"""
 import numpy as np
 from scipy.linalg import expm #This is the automatic matrix expnent solver
 import math

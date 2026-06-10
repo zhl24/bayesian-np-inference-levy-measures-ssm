@@ -1,4 +1,13 @@
-#### This file contains the additional samplers to help the bimodal experiments
+"""Additional samplers supporting the bimodal Lévy-measure experiments.
+
+Helper routines used specifically by the bimodal-driven NVM experiments, on top
+of the general-purpose samplers in ``mcmc_sampler`` and
+``mcmc_sampler_sigmaw2_conditional``.
+
+Part of the code accompanying:
+    Lin, B. Z. & Godsill, S. (2025). Bayesian Non-Parametric Inference for
+    Lévy Measures in State-Space Models. arXiv:2505.22587.
+"""
 import numpy as np
 from scipy.linalg import expm #This is the automatic matrix expnent solver
 import math

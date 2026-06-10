@@ -1,3 +1,13 @@
+"""Kalman filtering and RTS smoothing with marginal-likelihood accumulation.
+
+Numerically-guarded Kalman transition/correction steps and an RTS smoother used
+to evaluate the conditional Gaussian likelihood of the linear Lévy state-space
+model given a realised jump (shot-noise) configuration.
+
+Part of the code accompanying:
+    Lin, B. Z. & Godsill, S. (2025). Bayesian Non-Parametric Inference for
+    Lévy Measures in State-Space Models. arXiv:2505.22587.
+"""
 import numpy as np
 from scipy.linalg import expm #This is the automatic matrix expnent solver
 import math

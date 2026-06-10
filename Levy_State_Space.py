@@ -1,3 +1,13 @@
+"""Linear Lévy state-space models via shot-noise representations.
+
+Builds hidden-state paths and noisy observations for the Langevin model driven
+by a Lévy (NVM) noise process, using the series representation of the driving
+jumps.
+
+Part of the code accompanying:
+    Lin, B. Z. & Godsill, S. (2025). Bayesian Non-Parametric Inference for
+    Lévy Measures in State-Space Models. arXiv:2505.22587.
+"""
 import numpy as np
 from scipy.linalg import expm #This is the automatic matrix expnent solver
 import math
