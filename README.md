@@ -1,7 +1,6 @@
 # Bayesian Non-Parametric Inference for Lévy Measures in State-Space Models
 
 [![arXiv](https://img.shields.io/badge/arXiv-2505.22587-b31b1b.svg)](https://arxiv.org/abs/2505.22587)
-[![Bayesian Analysis](https://img.shields.io/badge/Bayesian%20Analysis-2025-2c3e50.svg)](https://projecteuclid.org/journals/bayesian-analysis)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/)
 
