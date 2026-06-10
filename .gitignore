@@ -5,3 +5,4 @@ buffer.npz
 
 noisy_nvm_direct_observations_sigmaw2_conditional.npz
 nvm_direct_observations_sigmaw2_conditional.npz
+nvm_bimodal_subordinator_experiments.npz
